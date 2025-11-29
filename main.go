@@ -11,7 +11,10 @@ const (
 
 func main() {
 	bc := NewBlockChain()
+	defer bc.db.Close()
 
-	bc.AddBlock("Send 1 BTC to Roman")
-	bc.AddBlock("Send 2 BTC to Roman")
+	cli := CLI{
+		bc: bc,
+	}
+	cli.Run()
 }
